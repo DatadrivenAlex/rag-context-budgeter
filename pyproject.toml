@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling>=1.25,<2"]
+build-backend = "hatchling.build"
+[project]
+name = "rag-context-budgeter"
+version = "0.1.0"
+description = "Deterministic UTF-8 byte-budget context packing for RAG experiments"
+requires-python = ">=3.11"
+dependencies = ["fastapi>=0.115,<1", "uvicorn>=0.30,<1", "pydantic>=2.9,<3", "PyYAML>=6,<7"]
+[project.scripts]
+context-pack = "context_budgeter.cli:main"
+[dependency-groups]
+dev = ["pytest>=8,<10", "httpx>=0.27,<1", "ruff>=0.8,<1", "build>=1,<2"]
+[tool.hatch.build.targets.wheel]
+packages = ["context_budgeter"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "B", "UP"]
